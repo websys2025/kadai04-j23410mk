@@ -14,8 +14,7 @@
                 { id: 2, name: "水", price: 100, stock: 14 },
                 { id: 3, name: "オレンジジュース", price: 150, stock: 7 },
                 { id: 4, name: "リンゴジュース", price: 150, stock: 9 },
-                { id: 5, name: "炭酸水", price: 120, stock: 0 }, //在庫数が0でないと在庫がない場合のテキストが出ないため調整
-                
+                { id: 5, name: "炭酸水", price: 120, stock: 1 },
                 { id: 6, name: "サイダー", price: 160, stock: 3 },
                 { id: 7, name: "コーヒー", price: 170, stock: 8 },
                 { id: 8, name: "紅茶", price: 140, stock: 6 }
@@ -34,13 +33,10 @@
 
                 // 商品一覧の表示関数
                 static showItemList(list) {
-                    console.log("商品は以下の" + items.length + "種類です。");
+                    console.log("商品は以下の" + Item.number + "種類です。");
 
                     // 配列の内容を項目毎に出力
                     // 課題4-1. ここにコードを書く
-                    for (const item of items) {
-                        console.log("商品番号: " + item.id + ", 商品名: " + item.name + ", 金額: " + item.price + ", 在庫数: " + item.stock);
-                    }
                     console.log(""); // 空行の出力
                 }
                 
@@ -67,21 +63,6 @@
 
             // 課題4-1. ここにコード書く
             // 商品オブジェクトの生成
-            function buyItem(no) {
-                const item = items.find( function(i) {return i.id === no;});
-                if(item){
-                    console.log("商品番号: " + item.id + ", 商品名: " + item.name + "を購入します。");
-                    if (item.stock > 0) {
-                    item.stock--;
-                    console.log("残りは"+item.stock+"個です");
-                    } else {
-                        console.log("残りは"+item.stock+"個です");
-                        console.log(item.name+"は商品の在庫がないため購入できません。");
-                    }
-                }else{
-                    console.log("該当する商品がありません。");
-                }
-            }
 
             // 課題4-2. ここにコードを書く
             // 商品表の作成
@@ -95,10 +76,6 @@
                 //}
             }
             Item.showItemList(item_list);
-            buyItem(2);
-            buyItem(2);
-            buyItem(4);
-            buyItem(5);
 
         </script>
     </body>
