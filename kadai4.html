@@ -49,7 +49,7 @@
                         console.log("商品番号: "+this.id+", 商品名: "+this.name+"を購入します。");
                         // 課題4-2. ここにコードを書く
                         // 購入による商品の在庫削減処理
-                        
+                        this.stock--;
                         // 課題4-3. ここにコードを書く
                         // 在庫用のエレメントを抽出し、HTML内の個数を更新
                     } else console.log(this.name+"は商品の在庫がないため購入できません。");
@@ -74,6 +74,25 @@
 
             // 課題4-2. ここにコードを書く
             // 商品表の作成
+            for (let i = 0; i < item_list.length; i++) {
+                const item = item_list[i];
+                const stockId = "stock" + item.id;
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                <td>${item.name}</td>
+                <td>${item.price}円</td>
+                <td id="${stockId}">${item.stock}</td>
+                <td><button id="button${item.id}">購入</button></td>
+                `;
+
+                itemArea.appendChild(row);
+
+                document.getElementById("button" + item.id).onclick = () => {
+                item.buyItem();
+
+                document.getElementById(stockId).textContent = item.stock;
+                }
+            }
 
             // クリックイベント時の購入処理の設定
             for (let i=0; i<item_list.length; i++) {
